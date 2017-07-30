@@ -1,1 +1,1 @@
-web: python KeyFather_bot.py
+worker: python KeyFather_bot.py
