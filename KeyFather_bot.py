@@ -1,15 +1,11 @@
 
 # coding: utf-8
-
-# In[17]:
-
-
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
+from apscheduler.schedulers.background import BackgroundScheduler
 import logging
 import time
 import random
-from apscheduler.schedulers.background import BackgroundScheduler
 
 logging.basicConfig(level=logging.INFO, 
                 filename='KeyMater_bot.log',
