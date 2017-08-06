@@ -23,7 +23,7 @@ answers_to_cheating = ['Кажется, я уже где-то это слыша�
 class TimeKeeper():
     
     def __init__(self):
-        self.current_time = time.localtime()
+        self.current_time = time.gmtime()
         self.key_taken_time = 'Никогда'
         self.key_status = 0
         
@@ -65,7 +65,7 @@ def echo(bot, update):
 if __name__ == '__main__':
     tk = TimeKeeper()
     scheduler = BackgroundScheduler()
-    job = scheduler.add_job(tk.reset_key_status, 'cron', day_of_week='mon-sun', hour=0)
+    job = scheduler.add_job(tk.reset_key_status, 'cron', day_of_week='mon-sun', hour=3)
     scheduler.start()
     updater = Updater(token='338212089:AAHzQZVLPEWvqfcLuNAH30EpaViFvGdXRbA')
     dispatcher = updater.dispatcher
