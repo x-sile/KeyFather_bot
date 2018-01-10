@@ -1,4 +1,3 @@
-
 # coding: utf-8
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
@@ -33,7 +32,7 @@ class TimeKeeper():
                  
     def key_status_change(self, status='взял'):
         
-        if status in ['взял', 'взяла'] and (self.key_status == 0):
+        if status in ['взял', 'взяла'] and not self.key_status:
             self.key_taken_time = self.current_time
             self.key_status = 1
             
@@ -44,15 +43,15 @@ def echo(bot, update):
     sent = update.message.text.strip().lower()
     logging.info(update)
     
-    if sent in good_phrases and (tk.key_status == 0):
+    if sent in good_phrases and not tk.key_status:
         answer = 'Спасибо, что взяли ключ!!!' 
-    elif sent in good_phrases and (tk.key_status == 1):
+    elif sent in good_phrases and tk.key_status:
         answer = random.choice(answers_to_cheating)
         
     tk.key_status_change(sent)
        
     if sent in check_phrases:
-        if tk.key_status == 1:
+        if tk.key_status:
             answer = 'Вам повезло! Сегодня ключ уже взяли. Можете расслабиться и идти работать.'
         else:
             answer = 'К сожалению, еще никого нет. Придется взять ключ=(.'    
@@ -72,4 +71,3 @@ if __name__ == '__main__':
     echo_handler = MessageHandler(Filters.text, echo)
     dispatcher.add_handler(echo_handler)
     updater.start_polling()
-
