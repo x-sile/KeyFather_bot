@@ -66,7 +66,7 @@ if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     job = scheduler.add_job(tk.reset_key_status, 'cron', day_of_week='mon-sun', hour=3)
     scheduler.start()
-    updater = Updater(token='338212089:AAHzQZVLPEWvqfcLuNAH30EpaViFvGdXRbA')
+    updater = Updater(token='the token is hidden')
     dispatcher = updater.dispatcher
     echo_handler = MessageHandler(Filters.text, echo)
     dispatcher.add_handler(echo_handler)
